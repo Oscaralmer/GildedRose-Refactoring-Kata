@@ -10,7 +10,7 @@ void GildedRose::updateQuality()
         int daily_quality_update = FindDailyQualityUpdate(item);
         UpdateDueDate(item);
 
-        if (ItemPastDueDate(item))
+        if (PastDueDate(item))
         {
             if (isAgedBrie(item))
             {
@@ -61,11 +61,6 @@ int FindDailyQualityUpdate(const Item& item)
     return daily_quality_update;
 }
 
-int GetQuality(const Item item)
-{
-    return item.quality;
-}
-
 void UpdateDueDate(Item& item)
 {
     if (!isLegendary(item))
@@ -104,7 +99,7 @@ void DecrementQuality(int & daily_quality_update)
     daily_quality_update = daily_quality_update - 1;
 }
 
-bool ItemPastDueDate(const Item& item)
+bool PastDueDate(const Item& item)
 {
     return item.sellIn < 0;
 }
